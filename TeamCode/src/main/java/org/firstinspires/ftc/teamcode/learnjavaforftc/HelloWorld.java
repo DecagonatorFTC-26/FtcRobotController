@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.learnJavaForFTC;
+package org.firstinspires.ftc.teamcode.learnjavaforftc;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
