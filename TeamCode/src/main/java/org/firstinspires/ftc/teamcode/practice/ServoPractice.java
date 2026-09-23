@@ -4,7 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.HardwareConfig;
 
-public class HardwareConfigTest extends LinearOpMode {
+public class ServoPractice extends LinearOpMode {
+
     HardwareConfig hardware = new HardwareConfig();
 
     @Override
@@ -13,7 +14,10 @@ public class HardwareConfigTest extends LinearOpMode {
         telemetry.addData("Status", "Ready");
         telemetry.update();
 
-        hardware.frontLeft.setPower(0.5);
-
+        while (opModeIsActive()) {
+            if (gamepad1.a) {
+                hardware.pollenPusher.setPosition(0);
+            }
+        }
     }
 }
