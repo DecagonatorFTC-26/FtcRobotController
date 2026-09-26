@@ -6,17 +6,17 @@ import org.firstinspires.ftc.teamcode.HardwareConfig;
 
 public class ServoPractice extends LinearOpMode {
 
-    HardwareConfig hardware = new HardwareConfig();
+    HardwareConfig config = new HardwareConfig();
 
     @Override
     public void runOpMode() {
-        hardware.init(hardwareMap);
+        config.init(hardwareMap);
         telemetry.addData("Status", "Ready");
         telemetry.update();
 
         while (opModeIsActive()) {
             if (gamepad1.a) {
-                hardware.pollenPusher.setPosition(0);
+                config.pollenPusher.setPosition(0);
             }
         }
     }

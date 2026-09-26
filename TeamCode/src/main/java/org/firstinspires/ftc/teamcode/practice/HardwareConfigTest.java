@@ -5,15 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.HardwareConfig;
 
 public class HardwareConfigTest extends LinearOpMode {
-    HardwareConfig hardware = new HardwareConfig();
+    HardwareConfig config = new HardwareConfig();
 
     @Override
     public void runOpMode() {
-        hardware.init(hardwareMap);
+        config.init(hardwareMap);
         telemetry.addData("Status", "Ready");
         telemetry.update();
 
-        hardware.frontLeft.setPower(0.5);
+        config.frontLeft.setPower(0.5);
 
     }
 }
