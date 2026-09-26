@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @TeleOp(name = "Mecanum Drive", group = "Drive")
-public class mecanumDriveGamepad extends LinearOpMode {
+public class MecanumDriveGamepad extends LinearOpMode {
     private DcMotor frontLeft, frontRight, backLeft, backRight;
     private IMU imu;
 
