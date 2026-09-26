@@ -22,7 +22,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 @Autonomous(name = "Mecanum Encoder Auto")
-public class mechanumDriveCode extends LinearOpMode {
+public class MechanumDriveCode extends LinearOpMode {
 
     private DcMotor frontLeft;
     private DcMotor frontRight;
