@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.mechanisms;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,7 +8,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-public class HardwareConfig {
+public class MechanumConfig {
+
+    //This is the Mechanum Drive Mechanism
 
     public DcMotor frontLeft;
     public DcMotor frontRight;
@@ -52,6 +54,7 @@ public class HardwareConfig {
         imu.initialize(new IMU.Parameters(RevOrientation));
     }
 
+    //This is the added functions
     public void drive(double forward, double strafe, double rotate) {
         double frontLeftPower = forward + strafe + rotate;
         double backLeftPower = forward - strafe + rotate;

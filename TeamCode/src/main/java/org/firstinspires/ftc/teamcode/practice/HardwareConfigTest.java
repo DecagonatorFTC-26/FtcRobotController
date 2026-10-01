@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
 
 public class HardwareConfigTest extends LinearOpMode {
     HardwareConfig config = new HardwareConfig();
