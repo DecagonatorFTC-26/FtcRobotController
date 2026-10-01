@@ -16,7 +16,7 @@ public class ServoPractice extends LinearOpMode {
 
         while (opModeIsActive()) {
             if (gamepad1.a) {
-                config.pollenPusher.setPosition(0);
+                config.pollenPusherServo.setPosition(0);
             }
         }
     }
