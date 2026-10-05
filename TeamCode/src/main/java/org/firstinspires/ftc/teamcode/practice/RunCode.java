@@ -14,9 +14,12 @@ public class RunCode extends OpMode {
     double strafe;
     double rotate;
 
+    double feederPower;
+
     @Override
     public void init() {
         config.init(hardwareMap);
+        feederPower = 0.3;
     }
 
     @Override
@@ -24,5 +27,29 @@ public class RunCode extends OpMode {
         forward = gamepad1.right_stick_y;
         strafe = gamepad1.right_stick_x;
         rotate = gamepad1.left_stick_x;
+
+        config.driveFieldRelative(forward, strafe, rotate);
+
+        if (gamepad2.left_trigger_pressed) {
+            config.intakeMotor.setPower(gamepad2.left_trigger);
+        }
+
+        if (gamepad2.right_trigger_pressed) {
+            config.intakeMotor.setPower(gamepad2.right_trigger);
+        }
+
+        if (gamepad1.dpad_up){
+            config.feederServo.setPower(feederPower);
+        }
+        else {
+            config.feederServo.setPower(0);
+        }
+
+        if (gamepad1.dpad_down){
+            config.feederServo.setPower(-feederPower);
+        }
+        else{
+            config.feederServo.setPower(0);
+        }
     }
 }
