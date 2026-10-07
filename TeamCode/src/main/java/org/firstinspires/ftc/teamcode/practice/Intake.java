@@ -13,7 +13,7 @@ public class Intake extends OpMode {
     @Override
     public void init() {
         intake = hardwareMap.get(DcMotor.class, "intakeMotor");
-        intake.setDirection(DcMotor.Direction.REVERSE);
+        intake.setDirection(DcMotor.Direction.FORWARD);
     }
 
     @Override

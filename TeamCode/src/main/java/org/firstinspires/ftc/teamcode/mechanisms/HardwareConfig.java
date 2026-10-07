@@ -36,7 +36,7 @@ public class HardwareConfig {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.REVERSE);
-        intakeMotor.setDirection(DcMotor.Direction.REVERSE);
+        intakeMotor.setDirection(DcMotor.Direction.FORWARD);
         pollenPusherServo.setDirection(Servo.Direction.REVERSE);
         feederServo.setDirection(CRServo.Direction.REVERSE);
 
