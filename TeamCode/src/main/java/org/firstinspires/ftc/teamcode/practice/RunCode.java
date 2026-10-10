@@ -44,14 +44,20 @@ public class RunCode extends OpMode {
             config.intakeMotor.setPower(0);
         }
 
-        /* This is for the flywheel motor
-        if (gamepad2.right_trigger_pressed) {
-            config.intakeMotor.setPower(gamepad2.right_trigger);
+        if (gamepad2.right_trigger_pressed && !gamepad2.right_bumper) {
+            config.flywheelMotor.setPower(gamepad2.right_trigger);
         }
         else {
-            config.intakeMotor.setPower(0);
+            config.flywheelMotor.setPower(0);
         }
-        */
+
+        if (gamepad2.right_trigger_pressed && gamepad2.right_bumper) {
+            config.flywheelMotor.setPower(gamepad2.right_trigger);
+        }
+        else {
+            config.flywheelMotor.setPower(0);
+        }
+
         if (gamepad1.dpad_up){
             config.feederServo.setPower(feederPower);
         }
