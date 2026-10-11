@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode.practice;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.mechanisms.FunctionConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
 
 @TeleOp
 public class RunCode extends OpMode {
 
     HardwareConfig config = new HardwareConfig();
+    FunctionConfig function = new FunctionConfig();
 
     double forward;
     double strafe;
@@ -28,7 +30,7 @@ public class RunCode extends OpMode {
         strafe = gamepad1.right_stick_x;
         rotate = gamepad1.left_stick_x;
 
-        config.driveFieldRelative(forward, strafe, rotate);
+        function.driveFieldRelative(forward, strafe, rotate);
 
         if (gamepad2.left_trigger_pressed && !gamepad2.left_bumper) {
             config.intakeMotor.setPower(gamepad2.left_trigger);
