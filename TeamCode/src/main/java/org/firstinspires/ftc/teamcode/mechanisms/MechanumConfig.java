@@ -12,47 +12,7 @@ public class MechanumConfig {
 
     //This is the Mechanum Drive Mechanism
 
-    public DcMotor frontLeft;
-    public DcMotor frontRight;
-    public DcMotor backLeft;
-    public DcMotor backRight;
-    public Servo pollenPusher;
-    public IMU imu;
-
-    public void init(HardwareMap hardwareMap) {
-        frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
-        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft = hardwareMap.get(DcMotor.class, "backLeft");
-        backRight = hardwareMap.get(DcMotor.class, "backRight");
-        pollenPusher = hardwareMap.get(Servo.class, "pollenPusher");
-        imu = hardwareMap.get(IMU.class, "imu");
-
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
-        frontRight.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.REVERSE);
-
-        frontLeft.setPower(0);
-        frontRight.setPower(0);
-        backLeft.setPower(0);
-        backRight.setPower(0);
-
-        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD);
-
-        imu.initialize(new IMU.Parameters(RevOrientation));
-    }
+    HardwareConfig config = new HardwareConfig();
 
     //This is the added functions
     public void drive(double forward, double strafe, double rotate) {
@@ -70,10 +30,10 @@ public class MechanumConfig {
         maxPower = Math.max(maxPower, Math.abs(backLeftPower));
         maxPower = Math.max(maxPower, Math.abs(backRightPower));
 
-        frontLeft.setPower(maxSpeed * (frontLeftPower / maxPower));
-        frontRight.setPower(maxSpeed * (frontRightPower / maxPower));
-        backLeft.setPower(maxSpeed * (backLeftPower / maxPower));
-        backRight.setPower(maxSpeed * (backRightPower / maxPower));
+        config.frontLeft.setPower(maxSpeed * (frontLeftPower / maxPower));
+        config.frontRight.setPower(maxSpeed * (frontRightPower / maxPower));
+        config.backLeft.setPower(maxSpeed * (backLeftPower / maxPower));
+        config.backRight.setPower(maxSpeed * (backRightPower / maxPower));
     }
 
     public void driveFieldRelative(double forward, double strafe, double rotate) {
@@ -81,7 +41,7 @@ public class MechanumConfig {
         double r = Math.hypot(strafe, forward);
 
         theta = AngleUnit.normalizeRadians(theta -
-                imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+                config.imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
 
         double newForward = r * Math.sin(theta);
         double newStrafe = r * Math.cos(theta);
