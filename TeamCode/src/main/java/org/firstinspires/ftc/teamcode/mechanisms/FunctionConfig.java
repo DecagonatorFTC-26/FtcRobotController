@@ -4,8 +4,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class FunctionConfig {
 
-    // TODO this is where you add variabls and functions
-
     //This is the HardwareConfig
     HardwareConfig config = new HardwareConfig();
 
