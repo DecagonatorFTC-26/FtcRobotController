@@ -2,11 +2,12 @@ package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.mechanisms.MechanumConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.FunctionConfig;
 
 public class MechanumDrive extends OpMode {
-
-    MechanumConfig config = new MechanumConfig();
+    FunctionConfig function = new FunctionConfig();
+    HardwareConfig config = new HardwareConfig();
 
     double forward;
     double strafe;
@@ -23,6 +24,6 @@ public class MechanumDrive extends OpMode {
         strafe = gamepad1.right_stick_x;
         rotate = gamepad1.left_stick_x;
 
-        config.driveFieldRelative(forward, strafe, rotate);
+        function.driveFieldRelative(forward, strafe, rotate);
     }
 }

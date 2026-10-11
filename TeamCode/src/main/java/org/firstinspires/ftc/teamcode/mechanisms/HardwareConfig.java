@@ -11,7 +11,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class HardwareConfig {
 
     //This is the main mechanism
-
     public DcMotor frontLeft;
     public DcMotor frontRight;
     public DcMotor backLeft;

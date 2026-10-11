@@ -1,18 +1,16 @@
 package org.firstinspires.ftc.teamcode.mechanisms;
 
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.Servo;
-
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-public class MechanumConfig {
+public class FunctionConfig {
+
+    // TODO this is where you add variabls and functions
 
     //This is the HardwareConfig
-
     HardwareConfig config = new HardwareConfig();
+
+    //This is added variables
+        //To be added
 
     //This is the added functions
     public void drive(double forward, double strafe, double rotate) {
