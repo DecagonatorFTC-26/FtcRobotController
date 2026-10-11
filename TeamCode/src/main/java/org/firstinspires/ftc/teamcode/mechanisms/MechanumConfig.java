@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class MechanumConfig {
 
-    //This is the Mechanum Drive Mechanism
+    //This is the HardwareConfig
 
     HardwareConfig config = new HardwareConfig();
 
