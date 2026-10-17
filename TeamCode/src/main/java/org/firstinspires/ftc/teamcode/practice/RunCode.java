@@ -30,8 +30,8 @@ public class RunCode extends OpMode {
     @Override
     public void loop() {
         forward = gamepad1.right_stick_y;
-        strafe = gamepad1.right_stick_x;
-        rotate = gamepad1.left_stick_x;
+        rotate = gamepad1.right_stick_x;
+        strafe = gamepad1.left_stick_x;
 
         function.driveFieldRelative(forward, strafe, rotate);
 
@@ -43,7 +43,7 @@ public class RunCode extends OpMode {
         telemetry.addData("Gamepad 2 D-Pad Up - Feeder to Shooter", gamepad2.dpad_up);
         telemetry.addData("Gamepad 2 D-Pad Down - Feeder to Intake", gamepad2.dpad_down);
         telemetry.addData("Gamepad 1 Triangle Pollen Pusher Up", gamepad1.triangle);
-        telemetry.addData("Gamepad 1 Triangle Pollen Pusher Down", gamepad1.square);
+        telemetry.addData("Gamepad 1 Circle Pollen Pusher Down", gamepad1.square);
         telemetry.addData("Pollen Pusher Up", pollenPusherUp);
 
         if (gamepad2.left_trigger_pressed && !gamepad2.left_bumper) {

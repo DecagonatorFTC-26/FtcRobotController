@@ -23,7 +23,7 @@ public class RunCodeTest extends OpMode {
     public void init() {
         config.init(hardwareMap);
         function.init(config);
-        feederPower = 0.3;
+        feederPower = 0.8;
         telemetry.addLine("Hardware Initialized");
     }
 
