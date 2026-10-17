@@ -57,12 +57,20 @@ public class HardwareConfig {
         intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         flywheelMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        intakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        flywheelMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
