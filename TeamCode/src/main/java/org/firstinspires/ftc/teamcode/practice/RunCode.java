@@ -18,6 +18,7 @@ public class RunCode extends OpMode {
     double rotate;
     double feederPower;
     boolean isPressed = false;
+    boolean pollenPusherUp = true;
 
     @Override
     public void init() {
@@ -43,9 +44,11 @@ public class RunCode extends OpMode {
         telemetry.addData("Gamepad 2 D-Pad Down - Feeder to Intake", gamepad2.dpad_down);
         telemetry.addData("Gamepad 1 Triangle Pollen Pusher Up", gamepad1.triangle);
         telemetry.addData("Gamepad 1 Triangle Pollen Pusher Down", gamepad1.square);
+        telemetry.addData("Pollen Pusher Up", pollenPusherUp);
 
         if (gamepad2.left_trigger_pressed && !gamepad2.left_bumper) {
             config.intakeMotor.setPower(gamepad2.left_trigger);
+            gamepad1.rumble(1);
         }
         else {
             config.intakeMotor.setPower(0);
@@ -53,6 +56,7 @@ public class RunCode extends OpMode {
 
         if (gamepad2.left_trigger_pressed && gamepad2.left_bumper) {
             config.intakeMotor.setPower(-gamepad2.left_trigger);
+            gamepad1.rumble(0.5, 0, 1);
         }
         else {
             config.intakeMotor.setPower(0);
@@ -60,6 +64,7 @@ public class RunCode extends OpMode {
 
         if (gamepad2.right_trigger_pressed && !gamepad2.right_bumper) {
             config.flywheelMotor.setPower(gamepad2.right_trigger);
+            gamepad2.rumble(1);
         }
         else {
             config.flywheelMotor.setPower(0);
@@ -67,6 +72,7 @@ public class RunCode extends OpMode {
 
         if (gamepad2.right_trigger_pressed && gamepad2.right_bumper) {
             config.flywheelMotor.setPower(gamepad2.right_trigger);
+            gamepad1.rumble(0, 0.5, 1);
         }
         else {
             config.flywheelMotor.setPower(0);
@@ -74,6 +80,7 @@ public class RunCode extends OpMode {
 
         if (gamepad2.dpad_up){
             config.feederServo.setPower(feederPower);
+            gamepad1.rumble(1);
         }
         else {
             config.feederServo.setPower(0);
@@ -89,6 +96,7 @@ public class RunCode extends OpMode {
         if (gamepad1.triangle && !isPressed) {
             isPressed = true;
             config.pollenPusherServo.setPosition(0);
+            pollenPusherUp = false;
         }
         else {
             isPressed = false;
@@ -96,6 +104,7 @@ public class RunCode extends OpMode {
         if (gamepad1.square && !isPressed){
             isPressed = true;
             config.pollenPusherServo.setPosition(1);
+            pollenPusherUp = true;
         }
         else {
             isPressed = false;
