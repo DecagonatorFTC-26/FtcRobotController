@@ -1,11 +1,28 @@
 package org.firstinspires.ftc.teamcode.mechanisms;
 
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class FunctionConfig {
 
     //This is the HardwareConfig
-    HardwareConfig config = new HardwareConfig();
+    public HardwareConfig config;
+
+    public FunctionConfig() {
+        this.config = new HardwareConfig();
+    }
+
+    public FunctionConfig(HardwareConfig config) {
+        this.config = config;
+    }
+
+    public void init(HardwareMap hardwareMap) {
+        config.init(hardwareMap);
+    }
+
+    public void init(HardwareConfig config) {
+        this.config = config;
+    }
 
     //This is added variables
         //To be added

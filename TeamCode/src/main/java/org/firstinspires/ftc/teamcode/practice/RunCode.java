@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.mechanisms.FunctionConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
@@ -23,6 +22,7 @@ public class RunCode extends OpMode {
     @Override
     public void init() {
         config.init(hardwareMap);
+        function.init(config);
         feederPower = 0.3;
         telemetry.addLine("Hardware Initialized");
     }

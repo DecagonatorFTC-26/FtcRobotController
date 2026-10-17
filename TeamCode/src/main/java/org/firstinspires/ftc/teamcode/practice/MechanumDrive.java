@@ -16,6 +16,7 @@ public class MechanumDrive extends OpMode {
     @Override
     public void init() {
         config.init(hardwareMap);
+        function.init(config);
     }
 
     @Override
