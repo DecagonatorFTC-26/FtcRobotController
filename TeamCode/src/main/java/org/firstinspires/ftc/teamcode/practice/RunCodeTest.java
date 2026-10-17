@@ -32,7 +32,7 @@ public class RunCodeTest extends OpMode {
         strafe = gamepad1.right_stick_x;
         rotate = gamepad1.left_stick_x;
 
-        function.driveFieldRelative(forward, strafe, rotate);
+        //function.driveFieldRelative(forward, strafe, rotate);
 
         telemetry.addData("Gamepad 1 Right Stick Y - Forward", gamepad1.right_stick_y);
         telemetry.addData("Gamepad 1 Left Stick X - Rotate", gamepad1.left_stick_x);
