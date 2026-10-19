@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode.practice;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.mechanisms.FunctionConfig;
-import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.FunctionConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.HardwareConfig;
 
 @TeleOp
 public class RunCode extends OpMode {
