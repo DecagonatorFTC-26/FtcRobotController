@@ -25,6 +25,7 @@ public class ShootingConfig {
     public ElapsedTime feederTimer = new ElapsedTime();
     public Double feederPower = 0.8;
     public Double feederTimeSec = 10.0;
+    public Double flywheelVelocity = 1700.0;
 
     public void init(HardwareMap hardwareMap) {
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
@@ -43,24 +44,32 @@ public class ShootingConfig {
         flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        flywheelMotor.setPower(0);
+        flywheelMotor.setVelocity(0);
         intakeMotor.setPower(0);
         feederServo.setPower(0);
 
         pollenPusherServo.setPosition(0);
+
+        shootingState = ShootingState.IDLE;
     }
+
+
 
     public void updateState() {
         switch (shootingState) {
             case IDLE:
-
+                intakeMotor.setPower(0);
+                flywheelMotor.setVelocity(0);
+                feederServo.setPower(0);
+                shootingState = ShootingState.INTAKE_START;
+                break;
             case INTAKE_START:
                 intakeMotor.setPower(1);
                 shootingState = ShootingState.SPIN_UP;
                 break;
             case SPIN_UP:
-                flywheelMotor.setPower(1);
-                if(flywheelMotor.getPower() == 1) {
+                flywheelMotor.setVelocity(1800);
+                if (flywheelMotor.getVelocity() >= flywheelVelocity) {
                     shootingState = ShootingState.LAUNCH;
                 }
                 break;
