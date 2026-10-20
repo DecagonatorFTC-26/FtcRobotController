@@ -16,10 +16,10 @@ public class DriveConfig {
     public IMU imu;
 
     public void init(HardwareMap hardwareMap) {
-        frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
-        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft = hardwareMap.get(DcMotor.class, "backLeft");
-        backRight = hardwareMap.get(DcMotor.class, "backRight");
+        frontLeft = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+        frontRight = hardwareMap.get(DcMotor.class, "frontRightMotor");
+        backLeft = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        backRight = hardwareMap.get(DcMotor.class, "backRightMotor");
         imu = hardwareMap.get(IMU.class, "imu");
 
         frontLeft.setDirection(DcMotor.Direction.FORWARD);

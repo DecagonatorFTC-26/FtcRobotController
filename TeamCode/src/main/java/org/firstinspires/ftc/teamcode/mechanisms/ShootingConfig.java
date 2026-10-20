@@ -34,7 +34,7 @@ public class ShootingConfig {
     public void init(HardwareMap hardwareMap) {
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
         flywheelMotor = hardwareMap.get(DcMotorEx.class, "flywheelMotor");
-        pollenPusherServo = hardwareMap.get(Servo.class, "pollenPusherServo");
+        pollenPusherServo = hardwareMap.get(Servo.class, "pollenServo");
         feederServo = hardwareMap.get(CRServo.class, "feederServo");
 
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
