@@ -26,6 +26,10 @@ public class ShootingConfig {
     public Double feederPower = 0.8;
     public Double feederTimeSec = 10.0;
     public Double flywheelVelocity = 1700.0;
+    public boolean flywheelRunning = false;
+    public boolean intakeRunning = false;
+    public boolean feederRunning = false;
+    public boolean pollenPusherUp = true;
 
     public void init(HardwareMap hardwareMap) {
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
@@ -53,7 +57,36 @@ public class ShootingConfig {
         shootingState = ShootingState.IDLE;
     }
 
+    public void stopShootingSteps() {
+        shootingState = ShootingState.IDLE;
+    }
 
+    public void startIntake() {
+        shootingState = ShootingState.INTAKE_START;
+    }
+
+    public void startFlywheel() {
+        shootingState = ShootingState.SPIN_UP;
+    }
+
+    public void launchPollen() {
+        shootingState = ShootingState.LAUNCH;
+    }
+
+    public void feederReverse() {
+        feederServo.setPower(-feederPower);
+        feederRunning = true;
+    }
+
+    public void pollenPusherUp() {
+        pollenPusherServo.setPosition(1);
+        pollenPusherUp = true;
+    }
+
+    public void pollenPusherDown() {
+        pollenPusherServo.setPosition(0.25);
+        pollenPusherUp = false;
+    }
 
     public void updateState() {
         switch (shootingState) {
@@ -61,14 +94,19 @@ public class ShootingConfig {
                 intakeMotor.setPower(0);
                 flywheelMotor.setVelocity(0);
                 feederServo.setPower(0);
+                flywheelRunning = false;
+                feederRunning = false;
+                intakeRunning = false;
                 shootingState = ShootingState.INTAKE_START;
                 break;
             case INTAKE_START:
                 intakeMotor.setPower(1);
+                intakeRunning = true;
                 shootingState = ShootingState.SPIN_UP;
                 break;
             case SPIN_UP:
                 flywheelMotor.setVelocity(1800);
+                flywheelRunning = true;
                 if (flywheelMotor.getVelocity() >= flywheelVelocity) {
                     shootingState = ShootingState.LAUNCH;
                 }
@@ -76,11 +114,13 @@ public class ShootingConfig {
             case LAUNCH:
                 feederServo.setPower(feederPower);
                 feederTimer.reset();
+                feederRunning = true;
                 shootingState = ShootingState.LAUNCHING;
                 break;
             case LAUNCHING:
                 if (feederTimer.seconds() >= feederTimeSec) {
                     feederServo.setPower(0);
+                    feederRunning = false;
                     shootingState = ShootingState.IDLE;
                 }
                 break;
