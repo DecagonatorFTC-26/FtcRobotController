@@ -65,8 +65,18 @@ public class ShootingConfig {
         shootingState = ShootingState.INTAKE_START;
     }
 
+    public void intakeReverse() {
+        intakeMotor.setPower(-1);
+        intakeRunning = true;
+    }
+
     public void startFlywheel() {
         shootingState = ShootingState.SPIN_UP;
+    }
+
+    public void flywheelReverse() {
+        flywheelMotor.setVelocity(-flywheelVelocity);
+        flywheelRunning = true;
     }
 
     public void launchPollen() {

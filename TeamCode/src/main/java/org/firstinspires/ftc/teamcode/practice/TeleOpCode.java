@@ -6,12 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.mechanisms.DriveConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.ShootingConfig;
 
-@TeleOp
+@TeleOp(name = "TeleOp Run Code")
 public class TeleOpCode extends OpMode {
 
     DriveConfig drive = new DriveConfig();
     ShootingConfig shooting = new ShootingConfig();
-
     boolean gamepad1RightTrigger = false;
     boolean gamepad1LeftTrigger = false;
     boolean gamepad1DPadUp = false;
@@ -45,6 +44,16 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        if (gamepad1.right_trigger_pressed && gamepad1.right_bumper && !gamepad1RightTrigger) {
+            if (shooting.flywheelRunning) {
+                shooting.stopShootingSteps();
+            }
+
+            if (!shooting.flywheelRunning) {
+                shooting.flywheelReverse();
+            }
+        }
+
         if (gamepad1.left_trigger_pressed && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
                 shooting.stopShootingSteps();
@@ -55,13 +64,13 @@ public class TeleOpCode extends OpMode {
             }
         }
 
-        if (gamepad2.square && !gamepad2Square) {
-            if (shooting.pollenPusherUp) {
-                shooting.pollenPusherDown();
+        if (gamepad1.left_trigger_pressed && gamepad1.left_bumper && !gamepad1LeftTrigger) {
+            if (shooting.intakeRunning) {
+                shooting.stopShootingSteps();
             }
 
-            if (!shooting.pollenPusherUp) {
-                shooting.pollenPusherUp();
+            if (!shooting.intakeRunning) {
+                shooting.intakeReverse();
             }
         }
 
@@ -82,6 +91,16 @@ public class TeleOpCode extends OpMode {
 
             if (!shooting.feederRunning) {
                 shooting.feederReverse();
+            }
+        }
+
+        if (gamepad2.square && !gamepad2Square) {
+            if (shooting.pollenPusherUp) {
+                shooting.pollenPusherDown();
+            }
+
+            if (!shooting.pollenPusherUp) {
+                shooting.pollenPusherUp();
             }
         }
 
