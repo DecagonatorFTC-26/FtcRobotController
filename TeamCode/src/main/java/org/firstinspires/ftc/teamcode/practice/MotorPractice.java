@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.HardwareConfig;
 
 public class MotorPractice extends LinearOpMode {
     HardwareConfig hardware = new HardwareConfig();
