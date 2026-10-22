@@ -60,10 +60,12 @@ public class ShootingConfig {
 
     public void stopShootingSteps() {
         shootingState = ShootingState.IDLE;
+        updateState();
     }
 
     public void startIntake() {
         shootingState = ShootingState.INTAKE_START;
+        updateState();
     }
 
     public void intakeReverse() {
@@ -73,6 +75,7 @@ public class ShootingConfig {
 
     public void startFlywheel() {
         shootingState = ShootingState.SPIN_UP;
+        updateState();
     }
 
     public void flywheelReverse() {
@@ -82,6 +85,7 @@ public class ShootingConfig {
 
     public void launchPollen() {
         shootingState = ShootingState.LAUNCH;
+        updateState();
     }
 
     public void feederReverse() {
