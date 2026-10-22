@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.mechanisms;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -17,7 +18,7 @@ public class ShootingConfig {
         LAUNCHING
     }
 
-    public ShootingState shootingState;
+    public ShootingState shootingState = ShootingState.IDLE;
     public DcMotor intakeMotor;
     public DcMotorEx flywheelMotor;
     public Servo pollenPusherServo;

@@ -16,9 +16,9 @@ public class TeleOpCode extends OpMode {
     boolean gamepad1DPadUp = false;
     boolean gamepad1DPadDown = false;
     boolean gamepad2Square = false;
-    double forward = gamepad2.right_stick_y;
-    double strafe = gamepad2.right_stick_x;
-    double rotate = gamepad2.left_stick_x;
+    double forward;
+    double strafe;
+    double rotate;
 
     @Override
     public void init() {
@@ -101,9 +101,7 @@ public class TeleOpCode extends OpMode {
         if (gamepad2.square && !gamepad2Square) {
             if (shooting.pollenPusherUp) {
                 shooting.pollenPusherDown();
-            }
-
-            if (!shooting.pollenPusherUp) {
+            } else {
                 shooting.pollenPusherUp();
             }
         }
