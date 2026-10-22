@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.mechanisms.DriveConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.ShootingConfig;
 
-@TeleOp(name = "TeleOp Run Code")
+@TeleOp(name = "TeleOp Main")
 public class TeleOpCode extends OpMode {
 
     DriveConfig drive = new DriveConfig();
