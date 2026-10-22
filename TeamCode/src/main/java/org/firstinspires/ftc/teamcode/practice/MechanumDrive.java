@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
-import org.firstinspires.ftc.teamcode.mechanisms.FunctionConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.FunctionConfig;
 
 public class MechanumDrive extends OpMode {
     FunctionConfig function = new FunctionConfig();
@@ -16,6 +16,7 @@ public class MechanumDrive extends OpMode {
     @Override
     public void init() {
         config.init(hardwareMap);
+        function.init(config);
     }
 
     @Override
