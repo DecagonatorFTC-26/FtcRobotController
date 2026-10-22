@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.practice;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.FunctionConfig;
 
-@TeleOp(name = "Mecahanum Drive Field Oriented")
 public class MechanumDrive extends OpMode {
-
+    FunctionConfig function = new FunctionConfig();
     HardwareConfig config = new HardwareConfig();
 
     double forward;
@@ -17,6 +16,7 @@ public class MechanumDrive extends OpMode {
     @Override
     public void init() {
         config.init(hardwareMap);
+        function.init(config);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class MechanumDrive extends OpMode {
         strafe = gamepad1.right_stick_x;
         rotate = gamepad1.left_stick_x;
 
-        config.driveFieldRelative(forward, strafe, rotate);
+        function.driveFieldRelative(forward, strafe, rotate);
     }
 }
