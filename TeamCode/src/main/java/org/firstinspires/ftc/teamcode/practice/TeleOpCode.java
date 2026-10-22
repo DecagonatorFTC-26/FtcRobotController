@@ -32,6 +32,10 @@ public class TeleOpCode extends OpMode {
     public void loop() {
         telemetry.addData("Shooting State", shooting.shootingState);
 
+        forward = gamepad2.right_stick_y;
+        strafe = gamepad2.right_stick_x;
+        rotate = gamepad2.left_stick_x;
+
         drive.driveFieldRelative(forward, strafe, rotate);
 
         if (gamepad1.right_trigger_pressed && !gamepad1RightTrigger) {
