@@ -30,14 +30,21 @@ public class TeleOpCode extends OpMode {
 
     @Override
     public void loop() {
+
         telemetry.addData("Shooting State", shooting.shootingState);
+        telemetry.addData("Flywheel Running", shooting.flywheelRunning);
+        telemetry.addData("Feeder Running", shooting.feederRunning);
+        telemetry.addData("Intake Running", shooting.intakeRunning);
 
-        forward = gamepad2.right_stick_y;
-        strafe = gamepad2.right_stick_x;
-        rotate = gamepad2.left_stick_x;
+        //Adding values to drive code
+        forward = gamepad2.left_stick_y;
+        strafe = gamepad2.left_stick_x;
+        rotate = gamepad2.right_stick_x;
 
+        //Driving
         drive.driveFieldRelative(forward, strafe, rotate);
 
+        //Flywheel
         if (gamepad1.right_trigger_pressed && !gamepad1RightTrigger) {
             if (shooting.flywheelRunning) {
                 shooting.stopShootingSteps();
@@ -48,6 +55,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Flywheel Reverse
         if (gamepad1.right_trigger_pressed && gamepad1.right_bumper && !gamepad1RightTrigger) {
             if (shooting.flywheelRunning) {
                 shooting.stopShootingSteps();
@@ -58,6 +66,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Intake
         if (gamepad1.left_trigger_pressed && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
                 shooting.stopShootingSteps();
@@ -68,6 +77,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Intake Reverse
         if (gamepad1.left_trigger_pressed && gamepad1.left_bumper && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
                 shooting.stopShootingSteps();
@@ -78,6 +88,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Feeder Counterclockwise?
         if (gamepad1.dpad_up && !gamepad1DPadUp) {
             if (shooting.feederRunning){
                 shooting.stopShootingSteps();
@@ -88,6 +99,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Feeder Clockwise?
         if (gamepad1.dpad_down && !gamepad1DPadDown) {
             if (shooting.feederRunning){
                 shooting.stopShootingSteps();
@@ -98,6 +110,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Pollen Pusher
         if (gamepad2.square && !gamepad2Square) {
             if (shooting.pollenPusherUp) {
                 shooting.pollenPusherDown();
@@ -106,6 +119,7 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        //Setting gamepad variables
         gamepad1RightTrigger = gamepad1.right_trigger_pressed;
         gamepad1LeftTrigger = gamepad1.left_trigger_pressed;
         gamepad1DPadUp = gamepad1.dpad_up;
