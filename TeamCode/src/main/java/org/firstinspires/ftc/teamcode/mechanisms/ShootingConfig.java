@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class ShootingConfig {
 
-    enum ShootingState {
+    public enum ShootingState {
         IDLE,
         INTAKE_START,
         SPIN_UP,
@@ -139,6 +139,17 @@ public class ShootingConfig {
                     shootingState = ShootingState.IDLE;
                 }
                 break;
+        }
+
+        // Support simultaneous execution across mechanisms when their running flags are true
+        if (intakeRunning) {
+            intakeMotor.setPower(1);
+        }
+        if (flywheelRunning) {
+            flywheelMotor.setVelocity(flywheelVelocity);
+        }
+        if (feederRunning) {
+            feederServo.setPower(feederPower);
         }
     }
 }
