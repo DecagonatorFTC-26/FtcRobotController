@@ -27,10 +27,10 @@ public class ShootingConfig {
     public Double feederPower = 0.8;
     public Double feederTimeSec = 10.0;
     public Double flywheelVelocity = 1700.0;
-    public boolean flywheelRunning = false;
-    public boolean intakeRunning = false;
-    public boolean feederRunning = false;
-    public boolean pollenPusherUp = true;
+    public Boolean flywheelRunning = false;
+    public Boolean intakeRunning = false;
+    public Boolean feederRunning = false;
+    public Boolean pollenPusherUp = true;
 
     public void init(HardwareMap hardwareMap) {
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
@@ -103,6 +103,18 @@ public class ShootingConfig {
         pollenPusherUp = false;
     }
 
+    public void checkRunning() {
+        if (intakeRunning) {
+            intakeMotor.setPower(1);
+        }
+        if (flywheelRunning) {
+            flywheelMotor.setVelocity(flywheelVelocity);
+        }
+        if (feederRunning) {
+            feederServo.setPower(feederPower);
+        }
+    }
+
     public void updateState() {
         switch (shootingState) {
             case IDLE:
@@ -139,17 +151,6 @@ public class ShootingConfig {
                     shootingState = ShootingState.IDLE;
                 }
                 break;
-        }
-
-        // Support simultaneous execution across mechanisms when their running flags are true
-        if (intakeRunning) {
-            intakeMotor.setPower(1);
-        }
-        if (flywheelRunning) {
-            flywheelMotor.setVelocity(flywheelVelocity);
-        }
-        if (feederRunning) {
-            feederServo.setPower(feederPower);
         }
     }
 }

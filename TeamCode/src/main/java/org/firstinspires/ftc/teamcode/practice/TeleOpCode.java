@@ -36,6 +36,8 @@ public class TeleOpCode extends OpMode {
         telemetry.addData("Feeder Running", shooting.feederRunning);
         telemetry.addData("Intake Running", shooting.intakeRunning);
 
+        shooting.checkRunning();
+
         //Adding values to drive code
         forward = gamepad2.left_stick_y;
         strafe = gamepad2.left_stick_x;
