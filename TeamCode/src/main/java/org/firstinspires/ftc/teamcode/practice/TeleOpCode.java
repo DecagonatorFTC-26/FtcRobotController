@@ -36,8 +36,6 @@ public class TeleOpCode extends OpMode {
         telemetry.addData("Feeder Running", shooting.feederRunning);
         telemetry.addData("Intake Running", shooting.intakeRunning);
 
-        shooting.checkRunning();
-
         //Adding values to drive code
         forward = gamepad2.left_stick_y;
         strafe = gamepad2.left_stick_x;
@@ -49,7 +47,7 @@ public class TeleOpCode extends OpMode {
         //Flywheel
         if (gamepad1.right_trigger_pressed && !gamepad1RightTrigger) {
             if (shooting.flywheelRunning) {
-                shooting.stopShootingSteps();
+                shooting.stopFlywheel();
             }
 
             if (!shooting.flywheelRunning) {
@@ -57,10 +55,14 @@ public class TeleOpCode extends OpMode {
             }
         }
 
+        if (gamepad1.ps && gamepad2.ps) {
+            shooting.stopShootingSteps();
+        }
+
         //Flywheel Reverse
         if (gamepad1.right_trigger_pressed && gamepad1.right_bumper && !gamepad1RightTrigger) {
             if (shooting.flywheelRunning) {
-                shooting.stopShootingSteps();
+                shooting.stopFlywheel();
             }
 
             if (!shooting.flywheelRunning) {
@@ -71,7 +73,7 @@ public class TeleOpCode extends OpMode {
         //Intake
         if (gamepad1.left_trigger_pressed && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
-                shooting.stopShootingSteps();
+                shooting.stopIntake();
             }
 
             if (!shooting.intakeRunning) {
@@ -82,7 +84,7 @@ public class TeleOpCode extends OpMode {
         //Intake Reverse
         if (gamepad1.left_trigger_pressed && gamepad1.left_bumper && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
-                shooting.stopShootingSteps();
+                shooting.stopIntake();
             }
 
             if (!shooting.intakeRunning) {
@@ -93,18 +95,18 @@ public class TeleOpCode extends OpMode {
         //Feeder Counterclockwise?
         if (gamepad1.dpad_up && !gamepad1DPadUp) {
             if (shooting.feederRunning){
-                shooting.stopShootingSteps();
+                shooting.stopFeeder();
             }
 
             if (!shooting.feederRunning) {
-                shooting.launchPollen();
+                shooting.startFeeder();
             }
         }
 
         //Feeder Clockwise?
         if (gamepad1.dpad_down && !gamepad1DPadDown) {
             if (shooting.feederRunning){
-                shooting.stopShootingSteps();
+                shooting.stopFeeder();
             }
 
             if (!shooting.feederRunning) {

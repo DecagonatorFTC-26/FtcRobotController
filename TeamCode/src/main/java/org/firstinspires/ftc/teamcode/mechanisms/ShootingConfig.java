@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.mechanisms;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -64,9 +63,15 @@ public class ShootingConfig {
     }
 
     public void startIntake() {
-        shootingState = ShootingState.INTAKE_START;
-        updateState();
+        intakeMotor.setPower(1);
+        intakeRunning = true;
     }
+
+    public void stopIntake() {
+        intakeMotor.setPower(0);
+        intakeRunning = false;
+    }
+
 
     public void intakeReverse() {
         intakeMotor.setPower(-1);
@@ -74,20 +79,27 @@ public class ShootingConfig {
     }
 
     public void startFlywheel() {
-        shootingState = ShootingState.SPIN_UP;
-        updateState();
+        flywheelMotor.setVelocity(flywheelVelocity + 150);
+        flywheelRunning = true;
     }
 
+    public void stopFlywheel() {
+        flywheelMotor.setVelocity(0);
+        flywheelRunning = false;
+    }
     public void flywheelReverse() {
         flywheelMotor.setVelocity(-flywheelVelocity);
         flywheelRunning = true;
     }
 
-    public void launchPollen() {
-        shootingState = ShootingState.LAUNCH;
-        updateState();
+    public void startFeeder() {
+        feederServo.setPower(feederPower);
+        feederRunning = true;
     }
-
+    public void stopFeeder() {
+        feederServo.setPower(0);
+        feederRunning = false;
+    }
     public void feederReverse() {
         feederServo.setPower(-feederPower);
         feederRunning = true;
@@ -101,18 +113,6 @@ public class ShootingConfig {
     public void pollenPusherDown() {
         pollenPusherServo.setPosition(0.25);
         pollenPusherUp = false;
-    }
-
-    public void checkRunning() {
-        if (intakeRunning) {
-            intakeMotor.setPower(1);
-        }
-        if (flywheelRunning) {
-            flywheelMotor.setVelocity(flywheelVelocity);
-        }
-        if (feederRunning) {
-            feederServo.setPower(feederPower);
-        }
     }
 
     public void updateState() {
@@ -132,7 +132,7 @@ public class ShootingConfig {
                 shootingState = ShootingState.SPIN_UP;
                 break;
             case SPIN_UP:
-                flywheelMotor.setVelocity(1800);
+                flywheelMotor.setVelocity(flywheelVelocity + 150);
                 flywheelRunning = true;
                 if (flywheelMotor.getVelocity() >= flywheelVelocity) {
                     shootingState = ShootingState.LAUNCH;
