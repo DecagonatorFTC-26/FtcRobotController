@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
-@Autonomous(name = "Pedro Practice v3 (Annotated)", group = "Practice")
+@Autonomous(name = "Pedro Practice v3 (Annotated)")
 public class PedroPractice extends OpMode {
 
     // The main engine that handles motor power calculations and tracking paths.
@@ -27,14 +27,14 @@ public class PedroPractice extends OpMode {
     // POSE FACTORY: Pedro Pathing 3 introduces this to solve unit confusion.
     // By initializing with .degrees(), we tell the system to interpret our 3rd value
     // as standard degrees (0-360) instead of forcing us to type Math.toRadians().
-    private final PoseFactory p = PoseFactory.degrees();
+    private final PoseFactory poseFactory = PoseFactory.degrees();
 
     // Field Coordinate Poses: (X_Inches, Y_Inches, Heading_Degrees)
     // Note how much cleaner this is without Math.toRadians() wrapped everywhere!
-    private final Pose startPose   = p.of(82.21, 133.72, 270);
-    private final Pose shootPose   = p.of(83.06, 101.11, 270);
-    private final Pose neutralPose = p.of(118.39, 107.62, 270);
-    private final Pose parkPose    = p.of(131.63, 44.48, 270);
+    private final Pose startPose   = poseFactory.of(82.21, 133.72, 270);
+    private final Pose shootPose   = poseFactory.of(83.06, 101.11, 270);
+    private final Pose neutralPose = poseFactory.of(118.39, 107.62, 270);
+    private final Pose parkPose    = poseFactory.of(131.63, 44.48, 270);
 
     /* ========================================================================
      * TRAJECTORY GENERATION METHODS
