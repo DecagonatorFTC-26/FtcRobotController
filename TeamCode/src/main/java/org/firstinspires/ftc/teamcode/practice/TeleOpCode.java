@@ -45,13 +45,18 @@ public class TeleOpCode extends OpMode {
         drive.driveFieldRelative(forward, strafe, rotate);
 
         //Flywheel
-        if (gamepad1.right_trigger_pressed && !gamepad1RightTrigger) {
+        if (gamepad1.right_trigger_pressed && !gamepad1.right_bumper && !gamepad1RightTrigger) {
             if (shooting.flywheelRunning) {
                 shooting.stopFlywheel();
-            }
-
-            if (!shooting.flywheelRunning) {
+            } else {
                 shooting.startFlywheel();
+            }
+        }
+        else if (gamepad1.right_trigger_pressed && gamepad1.right_bumper && !gamepad1RightTrigger) {
+            if (shooting.flywheelRunning) {
+                shooting.stopFlywheel();
+            } else {
+                shooting.flywheelReverse();
             }
         }
 
@@ -59,35 +64,18 @@ public class TeleOpCode extends OpMode {
             shooting.stopShootingSteps();
         }
 
-        //Flywheel Reverse
-        if (gamepad1.right_trigger_pressed && gamepad1.right_bumper && !gamepad1RightTrigger) {
-            if (shooting.flywheelRunning) {
-                shooting.stopFlywheel();
-            }
-
-            if (!shooting.flywheelRunning) {
-                shooting.flywheelReverse();
-            }
-        }
-
         //Intake
-        if (gamepad1.left_trigger_pressed && !gamepad1LeftTrigger) {
+        if (gamepad1.left_trigger_pressed && !gamepad1.left_bumper && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
                 shooting.stopIntake();
-            }
-
-            if (!shooting.intakeRunning) {
+            } else {
                 shooting.startIntake();
             }
         }
-
-        //Intake Reverse
-        if (gamepad1.left_trigger_pressed && gamepad1.left_bumper && !gamepad1LeftTrigger) {
+        else if (gamepad1.left_trigger_pressed && gamepad1.left_bumper && !gamepad1LeftTrigger) {
             if (shooting.intakeRunning) {
                 shooting.stopIntake();
-            }
-
-            if (!shooting.intakeRunning) {
+            } else {
                 shooting.intakeReverse();
             }
         }
@@ -96,20 +84,14 @@ public class TeleOpCode extends OpMode {
         if (gamepad1.dpad_up && !gamepad1DPadUp) {
             if (shooting.feederRunning){
                 shooting.stopFeeder();
-            }
-
-            if (!shooting.feederRunning) {
+            } else {
                 shooting.startFeeder();
             }
         }
-
-        //Feeder Clockwise?
-        if (gamepad1.dpad_down && !gamepad1DPadDown) {
+        else if (gamepad1.dpad_down && !gamepad1DPadDown) {
             if (shooting.feederRunning){
                 shooting.stopFeeder();
-            }
-
-            if (!shooting.feederRunning) {
+            } else {
                 shooting.feederReverse();
             }
         }

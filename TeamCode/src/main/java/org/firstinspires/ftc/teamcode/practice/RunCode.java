@@ -50,11 +50,7 @@ public class RunCode extends OpMode {
             config.intakeMotor.setPower(gamepad2.left_trigger);
             gamepad1.rumble(1);
         }
-        else {
-            config.intakeMotor.setPower(0);
-        }
-
-        if (gamepad2.left_trigger_pressed && gamepad2.left_bumper) {
+        else if (gamepad2.left_trigger_pressed && gamepad2.left_bumper) {
             config.intakeMotor.setPower(-gamepad2.left_trigger);
             gamepad1.rumble(0.5, 0, 1);
         }
@@ -66,11 +62,7 @@ public class RunCode extends OpMode {
             config.flywheelMotor.setPower(gamepad2.right_trigger);
             gamepad2.rumble(1);
         }
-        else {
-            config.flywheelMotor.setPower(0);
-        }
-
-        if (gamepad2.right_trigger_pressed && gamepad2.right_bumper) {
+        else if (gamepad2.right_trigger_pressed && gamepad2.right_bumper) {
             config.flywheelMotor.setPower(gamepad2.right_trigger);
             gamepad1.rumble(0, 0.5, 1);
         }
@@ -82,29 +74,26 @@ public class RunCode extends OpMode {
             config.feederServo.setPower(feederPower);
             gamepad1.rumble(1);
         }
-        else {
-            config.feederServo.setPower(0);
-        }
-
-        if (gamepad2.dpad_down){
+        else if (gamepad2.dpad_down){
             config.feederServo.setPower(-feederPower);
         }
         else{
             config.feederServo.setPower(0);
         }
 
-        if (gamepad1.triangle && !isPressed) {
-            isPressed = true;
-            config.pollenPusherServo.setPosition(0);
-            pollenPusherUp = false;
+        if (gamepad1.triangle) {
+            if (!isPressed) {
+                isPressed = true;
+                config.pollenPusherServo.setPosition(0);
+                pollenPusherUp = false;
+            }
         }
-        else {
-            isPressed = false;
-        }
-        if (gamepad1.square && !isPressed){
-            isPressed = true;
-            config.pollenPusherServo.setPosition(1);
-            pollenPusherUp = true;
+        else if (gamepad1.square) {
+            if (!isPressed) {
+                isPressed = true;
+                config.pollenPusherServo.setPosition(1);
+                pollenPusherUp = true;
+            }
         }
         else {
             isPressed = false;

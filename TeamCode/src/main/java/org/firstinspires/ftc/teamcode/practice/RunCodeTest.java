@@ -47,16 +47,17 @@ public class RunCodeTest extends OpMode {
         telemetry.addData("Pollen Pusher Down", pollenPusherDown);
         telemetry.addData("Button Pressed", isPressed);
 
-        if (gamepad1.triangle && !isPressed) {
-            isPressed = true;
-            pollenPusherDown = true;
+        if (gamepad1.triangle) {
+            if (!isPressed) {
+                isPressed = true;
+                pollenPusherDown = true;
+            }
         }
-        else {
-            isPressed = false;
-        }
-        if (gamepad1.square && !isPressed){
-            isPressed = true;
-            pollenPusherDown = false;
+        else if (gamepad1.square) {
+            if (!isPressed) {
+                isPressed = true;
+                pollenPusherDown = false;
+            }
         }
         else {
             isPressed = false;
