@@ -2,19 +2,19 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.CRServo;
 
-@TeleOp(name="Simple Feeder TeleOp", group="Iterative Opmode")
+
+@TeleOp(name="Feeder TeleOp", group="")
 public class feedermotor extends OpMode {
-    private DcMotor feederMotor = null;
+    private CRServo feederServo = null;
 
     @Override
     public void init() {
 
-        feederMotor = hardwareMap.get(DcMotor.class, "feeder_motor");
+        feederServo = hardwareMap.get(CRServo.class, "feederServo");
 
 
-        feederMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override
@@ -24,12 +24,12 @@ public class feedermotor extends OpMode {
 
         if (feederforward > 0) {
 
-            feederMotor.setPower(feederforward);
+            feederServo.setPower(feederforward);
         } else if (feederbackward > 0) {
 
-            feederMotor.setPower(feederbackward);
+            feederServo.setPower(feederbackward);
         } else {
-            feederMotor.setPower(0);
+            feederServo.setPower(0);
         }
     }
 }
