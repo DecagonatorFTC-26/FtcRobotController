@@ -4,9 +4,8 @@ import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.mechanisms.HardwareConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.unused.HardwareConfig;
 
 @Autonomous
 public class LimeLightTest extends OpMode {
@@ -33,23 +32,20 @@ public class LimeLightTest extends OpMode {
     public void loop() {
         LLResult llresult = limelight3A.getLatestResult();
         if ((llresult != null) && llresult.isValid()){
-            telemetry.addData("Target X Offset", llresult.getTx());
+            double tx = llresult.getTx();
+            telemetry.addData("Target X Offset", tx);
             telemetry.addData("Target Y Offset", llresult.getTy());
             telemetry.addData("Target Area Offset", llresult.getTa());
-        }
-        if ((llresult != null) && llresult.isValid()){
-            if (isPositive(llresult.getTx())){
-                while (llresult.getTx() < 2) {
-                    rotateClockwise(0.3);
-                }
+
+            if (tx > turnUntilTx) {
+                rotateClockwise(0.3);
+            } else if (tx < -turnUntilTx) {
+                rotateCounterClockwise(0.3);
+            } else {
                 stopMotor();
             }
-            if (isNegative(llresult.getTx())) {
-                while (llresult.getTx() > -2) {
-                    rotateCounterClockwise(0.3);
-                }
-                stopMotor();
-            }
+        } else {
+            stopMotor();
         }
     }
 
