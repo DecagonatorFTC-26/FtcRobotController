@@ -63,16 +63,17 @@ public class DriveConfig {
     }
 
     public void driveFieldRelative(double forward, double strafe, double rotate) {
-        double theta = Math.atan2(forward, strafe);
-        double r = Math.hypot(strafe, forward);
+        double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
-        theta = AngleUnit.normalizeRadians(theta -
-                imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+        // Rotate the movement vector by the negative of the robot heading
+        double rotStrafe = strafe * Math.cos(-botHeading) - forward * Math.sin(-botHeading);
+        double rotForward = strafe * Math.sin(-botHeading) + forward * Math.cos(-botHeading);
 
-        double newForward = r * Math.sin(theta);
-        double newStrafe = r * Math.cos(theta);
+        this.drive(rotForward, rotStrafe, rotate);
+    }
 
-        this.drive(newForward, newStrafe, rotate);
+    public void resetYaw() {
+        imu.resetYaw();
     }
 
     public void setMecanumMotorMode(DcMotor.RunMode runMode) {

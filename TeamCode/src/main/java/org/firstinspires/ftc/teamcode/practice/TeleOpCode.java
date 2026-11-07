@@ -31,6 +31,8 @@ public class TeleOpCode extends OpMode {
     @Override
     public void loop() {
 
+        drive.resetYaw();
+
         telemetry.addData("Shooting State", shooting.shootingState);
         telemetry.addData("Flywheel Running", shooting.flywheelRunning);
         telemetry.addData("Feeder Running", shooting.feederRunning);
