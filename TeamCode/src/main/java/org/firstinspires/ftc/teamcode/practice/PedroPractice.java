@@ -14,9 +14,12 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.mechanisms.DriveConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.ShootingConfig;
+import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 public class PedroPractice extends OpMode {
 
+    DriveConfig drive = new DriveConfig();
+    ShootingConfig shooting = new ShootingConfig();
     private Follower follower;
     private final PoseFactory poseFactory = PoseFactory.degrees();
 
@@ -24,7 +27,7 @@ public class PedroPractice extends OpMode {
     private final Pose startPose   = poseFactory.of(82.21, 133.72, 270);
     private final Pose shootPose   = poseFactory.of(83.06, 101.11, 270);
     private final Pose neutralPose = poseFactory.of(118.39, 107.62, 270);
-    private final Pose parkPose    = poseFactory.of(131.63, 44.48, 270);
+    private final Pose parkPose = poseFactory.of(131.63, 44.48, 270);
     private Path startToShoot() {
         return line(startPose, shootPose).linear(startPose, shootPose);
     }
@@ -47,9 +50,12 @@ public class PedroPractice extends OpMode {
 
     @Override
     public void init() {
+        drive.init(hardwareMap);
+        shooting.init(hardwareMap);
         Scheduler.reset();
         follower.setPose(startPose);
         follower.update();
+        follower = Constants.create(hardwareMap);
     }
 
     @Override
