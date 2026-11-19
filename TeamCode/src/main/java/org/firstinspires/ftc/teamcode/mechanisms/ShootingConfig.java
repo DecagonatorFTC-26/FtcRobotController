@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.mechanisms;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -25,7 +27,15 @@ public class ShootingConfig {
     public ElapsedTime feederTimer = new ElapsedTime();
     public Double feederPower = 0.8;
     public Double feederTimeSec = 10.0;
-    public Double flywheelVelocity = 1700.0;
+    public Double flywheelVelocityHigh = 1700.0;
+    public Double flywheelVelocityLow = 1100.0;
+    public Double curTargetVelocityFlywheel = flywheelVelocityHigh;
+    public Double flywheelF = 0.0;
+    public Double flywheelP = 0.0;
+    public double[] stepSizesValues = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
+    public int stepIndexValues = 1;
+    public double[] stepSizesVelocity = {0.01, 0.1, 1.0, 10.0, 100.0, 1000.0};
+    public int stepIndexVelocity = 1;
     public Boolean flywheelRunning = false;
     public Boolean intakeRunning = false;
     public Boolean feederRunning = false;
@@ -38,7 +48,7 @@ public class ShootingConfig {
         feederServo = hardwareMap.get(CRServo.class, "feederServo");
 
         intakeMotor.setDirection(DcMotor.Direction.FORWARD);
-        flywheelMotor.setDirection(DcMotor.Direction.REVERSE);
+        flywheelMotor.setDirection(DcMotor.Direction.FORWARD);
         pollenPusherServo.setDirection(Servo.Direction.REVERSE);
         feederServo.setDirection(CRServo.Direction.REVERSE);
 
@@ -53,6 +63,9 @@ public class ShootingConfig {
         feederServo.setPower(0);
 
         pollenPusherServo.setPosition(0);
+
+        PIDFCoefficients pidfCoefficientsFlywheel = new PIDFCoefficients(flywheelP, 0, 0, flywheelF);
+        flywheelMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefficientsFlywheel);
 
         shootingState = ShootingState.IDLE;
     }
@@ -79,7 +92,7 @@ public class ShootingConfig {
     }
 
     public void startFlywheel() {
-        flywheelMotor.setVelocity(flywheelVelocity + 150);
+        flywheelMotor.setVelocity(flywheelVelocityHigh + 150);
         flywheelRunning = true;
     }
 
@@ -88,7 +101,7 @@ public class ShootingConfig {
         flywheelRunning = false;
     }
     public void flywheelReverse() {
-        flywheelMotor.setVelocity(-flywheelVelocity);
+        flywheelMotor.setVelocity(-flywheelVelocityHigh);
         flywheelRunning = true;
     }
 
@@ -132,9 +145,9 @@ public class ShootingConfig {
                 shootingState = ShootingState.SPIN_UP;
                 break;
             case SPIN_UP:
-                flywheelMotor.setVelocity(flywheelVelocity + 150);
+                flywheelMotor.setVelocity(flywheelVelocityHigh + 150);
                 flywheelRunning = true;
-                if (flywheelMotor.getVelocity() >= flywheelVelocity) {
+                if (flywheelMotor.getVelocity() >= flywheelVelocityHigh) {
                     shootingState = ShootingState.LAUNCH;
                 }
                 break;

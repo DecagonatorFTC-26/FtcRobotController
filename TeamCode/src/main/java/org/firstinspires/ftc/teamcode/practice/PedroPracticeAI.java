@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
-@Autonomous(name = "Pedro Practice v3 (Annotated)")
+//@Autonomous(name = "Pedro Practice v3 (Annotated)")
 public class PedroPracticeAI extends OpMode {
 
     // The main engine that handles motor power calculations and tracking paths.
